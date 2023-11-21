@@ -1,15 +1,16 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {createBottomTabNavigation} from '@react-navigation/bottom-tabs'
-import {Ionicons} from 'react-native-vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 import {COLORS} from "../constants/index"
 //Screens
 
-import {Home, Search, Profile} from '../screens'
+import {Home, Search, Profile} from  '../screens/'
 
 
-const Tab = createBottomTabNavigation()
+const Tab = createBottomTabNavigator()
 
 const screenOptions = {
     tabBarShowLabel: false,
@@ -26,49 +27,42 @@ const screenOptions = {
 }
 const BottomTabNavigation = () => {
     return (
-        <Tab.Navigation screenOptions={screenOptions}>
-            <Tab.screen 
-                name="Home" 
-                component={Home}
-                options={{
-                    tabBarIcons: ({focused}) =>{
-                        return <Ionicons 
-                            name={ focused?"ios-home": "home-outlined"} 
-                            size={24} 
-                            color={focused? COLORS.primary: COLORS.gray2} 
-                            />
-                    }
-                }} 
-                />
-            <Tab.screen 
-                name="Search" 
-                component={Search} 
-                options={{
-                    tabBarIcons: ({focused}) =>{
-                        return <Ionicons 
-                            name={"search-sharp"} 
-                            size={24} 
-                            color={focused? COLORS.primary: COLORS.gray2} 
-                            
-                            />
-                    }
-                }} 
-                />
-            <Tab.scree 
-                name="Profile" 
-                component={Profile} 
-                options={{
-                    tabBarIcons: ({focused}) =>{
-                        return <Ionicons 
-                            name={ focused?"person": "person-outlined"} 
-                            size={24} 
-                            color={focused? COLORS.primary: COLORS.gray2} 
-                            />
-                    }
-                }} 
-                />
-        </Tab.Navigation>
-    );
+        <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={screenOptions}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size,focused }) => (
+            <MaterialCommunityIcons name={focused?"home": "home-outline"} color={focused? COLORS.primary : COLORS.gray} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons name={focused? "magnify": "magnify-minus-outline"} color={focused? COLORS.primary: COLORS.gray2} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons name={focused? "account": "account-outline"} color={focused? COLORS.primary: COLORS.gray} size={24} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
 
 const styles = StyleSheet.create({})

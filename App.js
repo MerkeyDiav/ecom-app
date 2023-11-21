@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { useCallback } from 'react';
 import SplashScreen from "react-native-splash-screen";
-import {NavigationContainer} from '@stripe/stripe-react-native'
-import {createNativeStackNavigation} from '@react-navigation/native-stack'
+import {NavigationContainer} from '@react-navigation/native'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import BottomTabNavigation from './app/navigation/BottomTabNavigation';
 
 
-const Stack = createNativeStackNavigation();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   // const [fontIsLoaded] = useIcon({
@@ -27,7 +27,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.screen 
+        <Stack.Screen 
           name= 'bottom Nav'
           component={BottomTabNavigation}
           options={{headerShown: false}}
@@ -40,7 +40,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },

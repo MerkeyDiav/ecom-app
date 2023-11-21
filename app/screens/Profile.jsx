@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Profile = () => {
     return (
         <SafeAreaView>
-           <Text>Hello</ext>
+           <Text>Hello</Text>
         </SafeAreaView>
     );
 }
